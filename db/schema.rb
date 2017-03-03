@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20170225144547) do
     t.string   "ingredients"
     t.string   "description"
     t.float    "weight",      limit: 24
-    t.float    "prise",       limit: 24
-    t.integer  "user_id"
+    t.float    "price",       limit: 24
+    t.integer  "category_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end

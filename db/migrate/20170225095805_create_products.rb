@@ -6,8 +6,8 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :ingredients
       t.string :description, nil: false
       t.float :weight
-      t.float :prise, nil: false
-      t.integer :user_id
+      t.float :price, nil: false
+      t.integer :category_id
       t.timestamps
     end
   end
