@@ -18,14 +18,21 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+
   end
 
   def update
-    @category = Category.find(params[:id])
-    @category.update(category_params)
+    if @category.update(category_params)
+    redirect_to root_path
+  else
+    render 'edit'
+    end
   end
 
-  def delete
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    redirect_to root_path
   end
 
   private

@@ -1,0 +1,27 @@
+<h1>Listing articles</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+  <% @products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.ingredients %></td>
+        <td><%= product.description %>
+        <td><%= product.weight %></td>
+        <td><%= product.price %></td>
+
+        <td><%= link_to 'Update', edit_category_product_path(@category, product) %></td>
+        <td><%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+  <% end %>
+  <%= link_to 'New product', new_category_product_path(@category) %>
+</table>
+

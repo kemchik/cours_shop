@@ -1,0 +1,24 @@
+<h1>Listing articles</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+  <% @category.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= category.description %></td>
+        <td><%= link_to 'Show', category_products_path(category) %></td>
+        <td><%= link_to 'Update', edit_category_url(category) %></td>
+        <td><%= link_to 'Destroy', categories_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+  <% end %>
+  <%= link_to 'New category', new_category_url %>
+</table>
+
