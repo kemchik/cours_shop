@@ -1,24 +1,17 @@
-<h1>Listing articles</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
+<br>
+<div class = "col-xs-4 ">
+  <h1>Categories</h1>
+<ul class="list-group">
 
   <% @category.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-        <td><%= category.description %></td>
-        <td><%= link_to 'Show', category_products_path(category) %></td>
-        <td><%= link_to 'Update', edit_category_url(category) %></td>
-        <td><%= link_to 'Destroy', categories_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
-      </tr>
-      <tr>
-        <td></td>
-      </tr>
+        <li class="list-group-item"><h3><%= category.name %></h3>
+        <p><%= category.description %></p>
+        <%= link_to 'Show', category_products_path(category) %>
+        <%= link_to 'Update', edit_category_url(category) %>
+        <%= link_to 'Destroy', categories_path(category), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </li>
   <% end %>
+  </ul>
   <%= link_to 'New category', new_category_url %>
-</table>
-
+</div>
+<br>

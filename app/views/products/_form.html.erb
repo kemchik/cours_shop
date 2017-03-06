@@ -2,6 +2,10 @@
   <div class='col-lg-4'>
     <%= simple_form_for [@category, @product] do |f| %>
         <p>
+          <%= f.file_field :image %>
+        </p>
+
+        <p>
           <%= f.input :name %>
         </p>
 

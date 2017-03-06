@@ -3,5 +3,6 @@ class Product < ApplicationRecord
   validates :name, :description, :price, presence: true
   validates :price, numericality: true
   validates :name, uniqueness: { scope: :category_id }
+  mount_uploader :image, ImageUploader
 end
 

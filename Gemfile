@@ -7,6 +7,8 @@ end
 
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'carrierwave', '~> 1.0'
+
 gem 'simple_form'
 #gem 'rails_admin', '~> 1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

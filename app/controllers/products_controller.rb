@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = @category.products
+    @category = Category.find(@category)
   end
 
   def show
@@ -49,6 +50,6 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product)
-        .permit(:name, :description, :ingredients, :description, :weight, :price, :amount)
+        .permit(:name, :description, :ingredients, :description, :image,:weight, :price, :amount)
   end
 end

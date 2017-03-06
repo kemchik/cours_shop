@@ -1,27 +1,49 @@
-<h1>Listing articles</h1>
+<h1><%= @category.name %></h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-  </tr>
+<% @products.each do |product| %>
+    <div class="row">
+      <div class='col-xs-3'>
+        <%= image_tag(product.image_url, options={width: 200})  if product.image? %>
+      </div>
+      <div class="col-xs-9">
+      <div>
+       <h2> <%= product.name %> </h2>
+      </div>
+        <div>
+          <h6>Ингридиенты</h6>
+          <p>
+          <%= product.ingredients %>
+          <p>
+        </div>
+          <div>
+          <h3>Описание</h3>
+          <p><%= product.description %></p>
+        </div>
+        <div >
+          <h6>Вес:</h6>
+          <p><%= product.weight %></p>
+        </div>
 
-  <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.ingredients %></td>
-        <td><%= product.description %>
-        <td><%= product.weight %></td>
-        <td><%= product.price %></td>
+        <div>
+          <h6>Цена:</h6>
+          <p></p><%= product.price %></p>
+        </div>
 
-        <td><%= link_to 'Update', edit_category_product_path(@category, product) %></td>
-        <td><%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
 
-      </tr>
-      <tr>
-        <td></td>
-      </tr>
-  <% end %>
+      <div>
+        <button class="button">
+          <%= link_to 'Update', edit_category_product_path(@category, product) %>
+        </button>
+        <button class='button'>
+          <%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: {confirm: 'Are you sure?'} %>
+        </button>
+      </div>
+    </div>
+<% end %>
+
+<div class="row">
+  <button class="bottom-aligned-row">
   <%= link_to 'New product', new_category_product_path(@category) %>
-</table>
+    </button>
+</div>
 
