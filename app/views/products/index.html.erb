@@ -37,6 +37,9 @@
         <button class='button'>
           <%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: {confirm: 'Are you sure?'} %>
         </button>
+        <button class='button'>
+          <%= link_to 'Add to oder', new_product_order_path(product)%>
+        </button>
       </div>
     </div>
 <% end %>

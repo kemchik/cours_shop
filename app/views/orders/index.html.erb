@@ -1,0 +1,32 @@
+<h1>Basket</h1>
+<% @order.each do |order| %>
+    <div class="row">
+      <div class='col-xs-3'>
+        <%= image_tag(order.product.image_url, options={width: 200})  %>
+      </div>
+      <div class="col-xs-9">
+        <div>
+          <p>Somthing</p>
+          <h2> <%= order.product.name %> </h2>
+        </div>
+        <div>
+          <h6>Ингридиенты</h6>
+          <p>
+            <%= order.product.ingredients %>
+          <p>
+        </div>
+        <div>
+          <h3>Описание</h3>
+          <p><%= order.product.description %></p>
+        </div>
+        <div >
+          <h6>Вес:</h6>
+          <p><%= order.product.weight %></p>
+        </div>
+
+        <div>
+          <h6>Цена:</h6>
+          <p></p><%= order.product.price %></p>
+        </div>
+      </div>
+<% end %>

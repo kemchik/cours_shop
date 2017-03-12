@@ -1,0 +1,14 @@
+<div class='row'>
+  <div class='col-lg-4'>
+    <%= simple_form_for @order, url: product_orders_path(@product) do |f| %>
+
+        <p>
+          <%= f.input :amount %>
+        </p>
+
+        <p>
+          <%= f.submit %>
+        </p>
+    <% end %>
+  </div>
+</div>
