@@ -1,52 +1,57 @@
-<h1><%= @category.name %></h1>
+<h1 class="text-center"><%= @category.name %></h1>
+<br>
+<hr>
+    <% @products.each do |product| %>
 
-<% @products.each do |product| %>
-    <div class="row">
-      <div class='col-xs-3'>
-        <%= image_tag(product.image_url, options={width: 200})  if product.image? %>
-      </div>
-      <div class="col-xs-9">
-      <div>
-       <h2> <%= product.name %> </h2>
-      </div>
-        <div>
-          <h6>Ингридиенты</h6>
-          <p>
-          <%= product.ingredients %>
-          <p>
-        </div>
+          <div class='col-xs-3'>
+            <br>
+            <%= image_tag(product.image_url, options={width: 250, height: 180}) if product.image? %>
+          </div>
+          <div class="col-xs-9">
+            <div>
+              <h2 class="text-center"> <%= product.name %> </h2>
+            </div>
+            <div>
+              <h3>Ингридиенты</h3>
+              <p>
+                <%= product.ingredients %>
+              <p>
+            </div>
+            <div>
+              <h3>Описание</h3>
+              <p><%= product.description %></p>
+            </div>
+            <div class="col-xs-3">
+              <h5 class="text-center">Вес</h5>
+              <p class="text-center"><%= product.weight %> кг.</p>
+            </div>
+            <div class="col-xs-3">
+              <h5 class="text-center">Калорийность(в 100 г)</h5>
+              <p class="text-center"><%= product.price %></p>
+            </div>
+            <div class="col-xs-3">
+              <h5 class="text-center">Цена</h5>
+              <p class="text-center"><%= product.price %></p>
+            </div>
+          </div>
           <div>
-          <h3>Описание</h3>
-          <p><%= product.description %></p>
-        </div>
-        <div >
-          <h6>Вес:</h6>
-          <p><%= product.weight %></p>
-        </div>
-
-        <div>
-          <h6>Цена:</h6>
-          <p></p><%= product.price %></p>
-        </div>
-
-
-      <div>
-        <button class="button">
-          <%= link_to 'Update', edit_category_product_path(@category, product) %>
-        </button>
-        <button class='button'>
-          <%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: {confirm: 'Are you sure?'} %>
-        </button>
-        <button class='button'>
-          <%= link_to 'Add to oder', new_product_order_path(product)%>
-        </button>
-      </div>
-    </div>
-<% end %>
-
+            <button class="button">
+              <%= link_to 'Update', edit_category_product_path(@category, product) %>
+            </button>
+            <button class='button'>
+              <%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: {confirm: 'Are you sure?'} %>
+            </button>
+            <button class='button '>
+              <%= link_to 'Add to oder', new_product_order_path(product) %>
+            </button>
+          </div>
+          <br>
+        <hr>
+    <% end %>
+  </table>
 <div class="row">
   <button class="bottom-aligned-row">
-  <%= link_to 'New product', new_category_product_path(@category) %>
-    </button>
+    <%= link_to 'New product', new_category_product_path(@category) %>
+  </button>
 </div>
 
