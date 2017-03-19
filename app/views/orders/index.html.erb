@@ -1,12 +1,13 @@
 <h1 class="text-center">Корзина</h1>
 <br>
 <hr>
+<% sum = 0.0 %>
 <% @order.each do |order| %>
 
     <div class="col-xs-1"></div>
     <div class="row">
       <div class='col-xs-3'>
-        <%= image_tag(order.product.image_url, options={width: 250, height: 180})  %>
+        <%= image_tag(order.product.image_url, options={width: 250, height: 180}) %>
       </div>
       <div class="col-xs-7">
         <div>
@@ -21,17 +22,31 @@
 
 
         <div class="col-xs-3">
-          <h6>Вес:</h6>
-          <p><%= order.product.weight %></p>
+          <h6 class="text-center">Вес:</h6>
+          <p class="text-center"><%= order.product.weight %></p>
         </div>
         <div class="col-xs-3">
-          <h6>Цена:</h6>
-          <p></p><%= order.product.price %></p>
+          <h6 class="text-center">Калории в 100г:</h6>
+          <p class="text-center"><%= order.product.calories %></p>
         </div>
         <div class="col-xs-3">
-          <h6>Цена:</h6>
-          <p></p><%= order.product.price %></p>
+          <h6 class="text-center">Цена:</h6>
+          <p class="text-center"><%= order.product.price %></p>
         </div>
+
+        <div class="col-xs-3">
+          <h6 class="text-center">Количество:</h6>
+          <p class="text-center"><%= order.amount %></p>
+        </div>
+        <% sum += order.amount * order.product.price %>
+
+        <% if order.persisted? %>
+            <%= link_to 'Delete', product_order_path(:product_id, order), method: :delete, data: {confirm: 'Are you sure?'} %>
+        <% end %>
+        <hr>
       </div>
-      <hr>
+    </div>
+    <hr>
 <% end %>
+
+<h3 class="text-right">Итого: <%= sum %> руб.</h3>

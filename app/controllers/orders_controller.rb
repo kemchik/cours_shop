@@ -2,7 +2,15 @@ class OrdersController < ApplicationController
   before_action :load_product, only: [:new, :create]
 
     def index
-      @order = Order.where(user_id: current_user)
+      if user_signed_in?
+        @order = Order.where(user_id: current_user)
+      else
+        @order = []
+        session[:orders].each do |order|
+          @order << Order.new(product_id: order['product_id'], amount: order['amount'])
+        end
+      end
+
     end
 
     def new
@@ -10,24 +18,24 @@ class OrdersController < ApplicationController
     end
 
     def create
-      @order = Order.new
-      @order.attributes = order_params
-      @order.product = @product
-      @order.user = current_user
-
-
-      if @order.save
-        redirect_to root_path
+      if user_signed_in?
+        @order = @product.orders.build(order_params)
+        if @order.save(user: current_user)
+          redirect_to products_path(@product.category_id)
+        else
+          render :new
+        end
       else
-        render :new
+        session[:orders] ||= []
+        session[:orders] << { product_id: @product.id, amount: order_params[:amount] }
+        redirect_to root_path
       end
-
     end
 
     def destroy
-      @order = @order.find(params[:id])
+      @order = Order.find(params[:id])
       @order.destroy
-      redirect_to order_path(@user)
+      redirect_to orders_path
     end
 
     private

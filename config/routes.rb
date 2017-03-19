@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"  #home controller, index action (method)
   devise_for :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   resources :categories do
     resources :products
