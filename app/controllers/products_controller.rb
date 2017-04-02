@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = @category.products
-    @category = Category.find(@category)
   end
 
   def show

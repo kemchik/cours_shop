@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
     def index
       if user_signed_in?
-        @order = Order.where(user_id: current_user)
+        @order = Order.where(user_id: current_user, status: nil)
       else
         @order = []
         session[:orders].each do |order|
@@ -20,8 +20,9 @@ class OrdersController < ApplicationController
     def create
       if user_signed_in?
         @order = @product.orders.build(order_params)
-        if @order.save(user: current_user)
-          redirect_to products_path(@product.category_id)
+        @order.user = current_user
+        if @order.save
+          redirect_to category_products_path(@product.category_id)
         else
           render :new
         end

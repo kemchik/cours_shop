@@ -1,17 +1,38 @@
 <br>
-<div class = "col-xs-4 ">
-  <h1>Categories</h1>
-<ul class="list-group">
 
-  <% @category.each do |category| %>
-        <li class="list-group-item"><h3><%= category.name %></h3>
-        <p><%= category.description %></p>
-        <%= link_to 'Show', category_products_path(category) %>
-        <%= link_to 'Update', edit_category_url(category) %>
-        <%= link_to 'Destroy', categories_path(category), method: :delete, data: { confirm: 'Are you sure?' } %>
-        </li>
-  <% end %>
-  </ul>
-  <%= link_to 'New category', new_category_url %>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <%= image_tag('slide3.png', class: 'd-block img-fluid slide') %>
+    </div>
+    <div class="item">
+      <%= image_tag('slide2.png', class: 'd-block img-fluid slide') %>
+    </div>
+    <div class="item">
+      <%= image_tag('slide1.png', class: 'd-block img-fluid slide') %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
+
+<div class="col-xs-4">
+<%= image_tag(@product_1.image_url, options={width: 250, height: 180}) if product.image? %>
+<h2 class="text-center"> <%= @product_1.name %> </h2>
+<h5 class="text-center">Цена</h5>
+<p class="text-center"><%= @product_1.price %></p>
+</div>
+
+<br>
 <br>

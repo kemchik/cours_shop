@@ -1,20 +1,21 @@
 class CustomersController < ApplicationController
 
   def new
-    @order_last = current_user.orders.last
-    if @order_last.nil?
+    @customer_last = Customer.where(user: current_user).last
+    if @customer_last.nil?
       @customer = Customer.new
     else
-      @customer = @order_last.customer
+      @customer = @customer_last
     end
   end
 
   def create
     if user_signed_in?
       @customer = Customer.new(customer_params)
+      @customer.user = current_user
       if @customer.save
-        @orders = current_user.orders
-        @orders.update_all(customer: @customer)
+        @orders = Order.all.where(user: current_user, status: nil)
+        @orders.update_all(customer_id: @customer.id, status: 'processing')
         redirect_to root_path
       else
         render :new
@@ -27,10 +28,6 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:adress, :phone, :email)
-  end
-
-  def load_product
-    @product = Product.find(params[:product_id])
+    params.require(:customer).permit(:address, :phone, :email)
   end
 end

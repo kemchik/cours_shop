@@ -1,21 +1,12 @@
-<nav role="navigation" class="navbar navbar-default navbar-static-top">
-  <!-- Brand and toggle get grouped for better mobile display -->
-  <div class="navbar-header">
-    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a href="#" class="navbar-brand">Бренд</a>
-  </div>
-  <!-- Collection of nav links, forms, and other content for toggling -->
-  <div id="navbarCollapse" class="collapse navbar-collapse">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
     <ul class="nav navbar-nav">
       <li class="active"><%= link_to 'Главная', root_path %></li>
-      <li><a href="#">Статьи</a></li>
-      <li class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Новости <b class="caret"></b></a>
+      <li class="dropdown ">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Категории <b class="caret"></b></a>
         <ul role="menu" class="dropdown-menu">
           <li><a href="#">Windows</a></li>
           <li><a href="#">Mac OS</a></li>
@@ -24,25 +15,29 @@
           <li><a href="#">Другие системы</a></li>
         </ul>
       </li>
+      </ul>
 
-    </ul>
 
-    <ul class="nav navbar-nav " >
-      <li >
-        <%= link_to 'Корзина', orders_path %>
-      </li>
-    </ul>
-
-    <ul class="nav navbar-nav " style="margin-right: 7%">
-      <li >
-
-        <% if user_signed_in? %>
-            <span>Здравствуйте, <%= current_user.email %></span>
+      <ul class="pull-right nav navbar-nav">
+        <li> <%= link_to 'Корзина  ', orders_path %></li>
+      <% if user_signed_in? %>
+          <li style="color: #F7F7F7">
+            <a> Здравствуйте <%= current_user.email %> </a>
+            </li>
+            <li>
             <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-        <% else %>
-            <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
-        <% end %>
-      </li>
-    </ul>
+          </li>
+      <% else %>
+          <li class = "pull-right">
+            <%= link_to 'Войти', new_user_session_path %>
+            </li>
+            <li>
+            <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+          </li>
+      <% end %>
+      </ul>
   </div>
 </nav>
+
+
+

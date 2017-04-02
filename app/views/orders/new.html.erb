@@ -1,6 +1,6 @@
 <div class='row'>
   <div class='col-lg-4'>
-    <p>В наличие: <%= @product.amount %> товара</p>
+     <p>В наличие: <%= @product.amount %> товара</p>
 
     <%= simple_form_for @order, url: product_orders_path(@product) do |f| %>
 

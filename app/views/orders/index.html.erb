@@ -41,7 +41,7 @@
         <% sum += order.amount * order.product.price %>
 
         <% if order.persisted? %>
-            <%= link_to 'Delete', product_order_path(:product_id, order), method: :delete, data: {confirm: 'Are you sure?'} %>
+            <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: 'Are you sure?'} %>
         <% end %>
         <hr>
       </div>
@@ -50,3 +50,7 @@
 <% end %>
 
 <h3 class="text-right">Итого: <%= sum %> руб.</h3>
+<div class="col-xs-5"></div>
+<div class="col-xs-2">
+  <button class="button"><%= link_to 'Купить', new_customer_path %></button>
+</div>
