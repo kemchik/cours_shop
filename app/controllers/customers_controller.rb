@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def new
-    @customer_last = Customer.where(user: current_user).last
+    @customer_last = Customer.where(user_id: current_user).last
     if @customer_last.nil?
       @customer = Customer.new
     else

@@ -27,11 +27,24 @@
   </a>
 </div>
 
-<div class="col-xs-4">
-<%= image_tag(@product_1.image_url, options={width: 250, height: 180}) if product.image? %>
-<h2 class="text-center"> <%= @product_1.name %> </h2>
-<h5 class="text-center">Цена</h5>
-<p class="text-center"><%= @product_1.price %></p>
+
+<div class="row">
+  <div class="col-xs-4 bf_menu ">
+    <br>
+    <h1>Категории</h1>
+    <div class="list-group">
+
+      <% @category.each do |category| %>
+          <li class="list-group-item"><h3><%= link_to category.name, category_products_path(category) %></h3>
+            <p><%= category.description %></p>
+            <%= link_to 'Update', edit_category_url(category) %>
+            <%= link_to 'Destroy', categories_path(category), method: :delete, data: {confirm: 'Are you sure?'} %>
+          </li>
+      <% end %>
+    </div>
+    <%= link_to 'New category', new_category_url %>
+  </div>
+
 </div>
 
 <br>

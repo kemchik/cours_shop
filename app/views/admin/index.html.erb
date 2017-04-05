@@ -1,0 +1,24 @@
+<table>
+<tr>
+  <td><h2 class="text-center">Адрес</h2></td>
+  <td><h2 class="text-center">Телефон</h2></td>
+  <td><h2 class="text-center">Email</h2></td>
+</tr>
+<% @customer.each do |customer| %>
+    <tr>
+      <td>
+       <h4 class="text-center"> <%= customer.address %></h4>
+      </td>
+      <td>
+        <h4 class="text-center"> <%= customer.phone %></h4>
+      </td>
+      <td>
+        <h4 class="text-center" > <%= customer.email %></h4>
+      </td>
+      <td>
+        <%= link_to 'Список товаров', admin_product_path(customer) %>
+      </td>
+      </tr>
+
+<% end %>
+</table>

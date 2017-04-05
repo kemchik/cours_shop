@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+
+
+  get 'admin/home'
+
+  devise_for :admins
+  get 'admin_products/index'
+
   # get 'basket/index'
 
   devise_for :users
@@ -15,6 +22,18 @@ Rails.application.routes.draw do
 
   resources :orders
   resources :customers
+
+  resources :customers do
+    resources :orders
+  end
+
+  #get 'admin/index'
+
+   resources :admin_products
+
+  get 'admin_products/update'
+  get 'admin' => 'admin#home'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

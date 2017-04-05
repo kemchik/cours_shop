@@ -1,0 +1,40 @@
+<% sum = 0.0 %>
+<% @status_message %>
+<% @customer %>
+<% @order.each do |order| %>
+    <% @customer = order.customer_id %>
+    <% @status_message = order.status == 'processing' ? 'Заказ в ожидании' : 'Заказ отправлен'%>
+    <div class="col-xs-4">
+      <hr>
+      <div style="height: 50%">
+        <%= image_tag(order.product.image_url, class: 'image_admin') %>
+      </div>
+      <div style = "width: 100%">
+        <div>
+          <h2 class="text-center"> <%= order.product.name %> </h2>
+        </div>
+        <div class="row">
+        <div class="col-xs-4">
+          <h4 class="text-center">Цена</h4>
+          <p class="text-center"><%= order.product.price %></p>
+        </div>
+        <div class="col-xs-4">
+          <h4 class="text-center">Количество</h4>
+          <p class="text-center"><%= order.product.amount %></p>
+        </div>
+
+        <div class="col-xs-4">
+          <h4 class="text-center">Итоговая сумма:</h4>
+          <h4 class="text-center"><%= sum_one = order.product.price*order.product.amount %> руб.</h4>
+        </div>
+        </div>
+        <% sum += sum_one %>
+      </div>
+    </div>
+<% end %>
+<hr>
+
+<h3>Итого: <%= sum %></h3>
+
+<h2 class="text-center"><%= @status_message %></h2>
+<button><%= link_to 'Заказ отправлен', admin_products_update_path %></button>
