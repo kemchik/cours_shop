@@ -1,11 +1,15 @@
 class CustomersController < ApplicationController
 
   def new
-    @customer_last = Customer.where(user_id: current_user).last
-    if @customer_last.nil?
-      @customer = Customer.new
+    if user_signed_in?
+      @customer_last = Customer.where(user_id: current_user).last
+      if @customer_last.nil?
+        @customer = Customer.new
+      else
+        @customer = @customer_last
+      end
     else
-      @customer = @customer_last
+      @customer = Customer.new
     end
   end
 
@@ -21,9 +25,14 @@ class CustomersController < ApplicationController
         render :new
       end
     else
+      @customer = Customer.new(customer_params)
+      if @customer.save
+        redirect_to root_path
+      else
+        render :new
+      end
       session[:customers] ||= []
       session[:customers] << { adress: customer_params[adress], phone: customer_params[:phone], email: customer_params[email]}
-      redirect_to root_path
     end
   end
 

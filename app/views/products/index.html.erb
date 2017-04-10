@@ -1,5 +1,6 @@
 <h1 class="text-center"><%= @category.name %></h1>
 
+
 <hr style="border-top: 1px solid #000000;">
 
     <% @products.each do |product| %>
@@ -38,23 +39,30 @@
               <%= link_to image_tag('basket.png', class: 'backet'), new_product_order_path(product) %>
             </div>
           </div>
-          <div>
-
-            <button class="button7 ">
-              <%= link_to 'Update', edit_category_product_path(@category, product) %>
-            </button>
-            <button class='button7'>
-              <%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: {confirm: 'Are you sure?'} %>
-            </button>
-          <br>
-        </div>
+          <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                    <div>
+                      <button class="button7 ">
+                        <%= link_to 'Update', edit_category_product_path(@category, product) %>
+                      </button>
+                      <button class='button7'>
+                        <%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: {confirm: 'Are you sure?'} %>
+                      </button>
+                    <br>
+                  </div>
+              <% end %>
+          <% end %>
       </div>
         <hr style="border-top: 1px solid #000000;">
     <% end %>
 
-<div class="row">
-  <button class="bottom-aligned-row">
-    <%= link_to 'New product', new_category_product_path(@category) %>
-  </button>
-</div>
 
+<% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <div class="row">
+        <button class="bottom-aligned-row">
+          <%= link_to 'New product', new_category_product_path(@category), method: :put %>
+        </button>
+      </div>
+  <% end %>
+<% end %>

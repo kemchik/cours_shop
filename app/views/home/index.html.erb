@@ -37,12 +37,20 @@
       <% @category.each do |category| %>
           <li class="list-group-item"><h3><%= link_to category.name, category_products_path(category) %></h3>
             <p><%= category.description %></p>
-            <%= link_to 'Update', edit_category_url(category) %>
-            <%= link_to 'Destroy', categories_path(category), method: :delete, data: {confirm: 'Are you sure?'} %>
+            <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                <%= link_to 'Update', edit_category_path(category) %>
+                <%= link_to 'Destroy', category_path(category), method: :delete, data: {confirm: 'Are you sure?'} %>
+              <% end %>
+            <% end %>
           </li>
       <% end %>
     </div>
-    <%= link_to 'New category', new_category_url %>
+    <% if user_signed_in? %>
+        <% if current_user.admin? %>
+            <%= link_to 'New category', new_category_url %>
+          <% end %>
+      <% end %>
   </div>
 
 </div>

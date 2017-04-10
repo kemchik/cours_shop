@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
 
   get 'admin/home'
-
   devise_for :admins
   get 'admin_products/index'
 
@@ -27,13 +26,13 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  #get 'admin/index'
+  resources :admin
 
-   resources :admin_products
+  resources :admin_products
 
-  get 'admin_products/update'
-  get 'admin' => 'admin#home'
+  resources :office
 
+  # get 'admin_products/update'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

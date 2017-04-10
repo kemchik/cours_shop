@@ -34,7 +34,9 @@
 <% end %>
 <hr>
 
-<h3>Итого: <%= sum %></h3>
+<h3>Итого: <%= sum %> руб.</h3>
 
 <h2 class="text-center"><%= @status_message %></h2>
-<button><%= link_to 'Заказ отправлен', admin_products_update_path %></button>
+<% if @status_message == 'Заказ в ожидании' %>
+<button><%= link_to 'Заказ отправлен', admin_product_path(@customer), method: :put %></button>
+<% end %>

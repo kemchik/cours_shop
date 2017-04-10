@@ -1,4 +1,7 @@
 class AdminController < ApplicationController
-  def home
+
+  def index
+    @customer = Customer.order(created_at: :desc)
   end
+
 end

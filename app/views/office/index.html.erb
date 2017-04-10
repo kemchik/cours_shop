@@ -1,0 +1,31 @@
+<% @order.each do |order| %>
+
+    <div class="row">
+      <div class='col-xs-4'>
+        <%= image_tag(order.product.image_url, class: 'image_prod') %>
+      </div>
+      <div class="col-xs-8">
+        <div>
+          <h2> <%= order.product.name %> </h2>
+        </div>
+        <div class="col-xs-3">
+          <h5 class="text-center">Цена</h5>
+          <p class="text-center"><%= order.product.price %></p>
+        </div>
+        <div class="col-xs-3">
+          <h5 class="text-center">Количество</h5>
+          <p class="text-center"><%= order.product.amount %></p>
+        </div>
+        <div class="col-xs-3">
+          <h5 class="text-center">Итого</h5>
+          <p class="text-center"><%= order.product.amount*order.product.price %></p>
+        </div>
+        <div class="col-xs-3">
+          <h5 class="text-center">Статус</h5>
+          <p class="text-center"><%= order.status %></p>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <hr>
+<% end %>
