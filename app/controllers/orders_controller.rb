@@ -5,12 +5,13 @@ class OrdersController < ApplicationController
       if user_signed_in?
         @order = Order.where(user_id: current_user, status: nil)
       else
+
         @order = []
         session[:orders].each do |order|
-          @order << Order.new(product_id: order['product_id'], amount: order['amount'])
-        end
-      end
+        @order << Order.new(product_id: order['product_id'], amount: order['amount'])
 
+      end
+      end
     end
 
     def new

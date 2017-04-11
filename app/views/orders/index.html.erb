@@ -11,11 +11,11 @@
       </div>
       <div class="col-xs-8">
         <div>
-          <h2> <%= order.product.name %> </h2>
+          <h2 style = "font-style: italic"> <%= order.product.name %> </h2>
         </div>
         <div>
           <h3>Ингридиенты</h3>
-          <p>
+          <p style = "font-style: italic">
             <%= order.product.ingredients %>
           <p>
         </div>
@@ -26,37 +26,37 @@
 
         <div class="col-xs-2">
           <h5 class="text-center">Вес</h5>
-          <p class="text-center"><%= order.product.weight %> кг.</p>
+          <p class="text-center" style = "font-style: italic"><%= order.product.weight %> кг.</p>
         </div>
         <div class="col-xs-3">
           <h5 class="text-center">Калорийность(в 100 г)</h5>
-          <p class="text-center"><%= order.product.calories %></p>
+          <p class="text-center" style = "font-style: italic"><%= order.product.calories %></p>
         </div>
         <div class="col-xs-3">
           <h5 class="text-center">Цена</h5>
-          <p class="text-center"><%= order.product.price %></p>
+          <p class="text-center" style = "font-style: italic"><%= order.product.price %></p>
         </div>
         <div class="col-xs-3">
           <h5 class="text-center">Количество</h5>
-          <p class="text-center"><%= order.product.amount %></p>
+          <p class="text-center" style = "font-style: italic"><%= order.product.amount %></p>
         </div>
 
         <div class="col-xs-3">
           <h4 class="text-center">Итоговая сумма:</h4>
-          <h4 class="text-center"><%= sum_one = order.product.price*order.product.amount %> руб.</h4>
+          <h4 class="text-center" style = "font-style: italic"><%= sum_one = order.product.price*order.product.amount %> руб.</h4>
         </div>
         <% sum += sum_one %>
 
         <% if order.persisted? %>
             <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: 'Are you sure?'} %>
         <% end %>
-        <hr>
+       
       </div>
     </div>
     <hr>
 <% end %>
 
-<h2 class="text-right">Итого: <%= sum %> руб.</h2>
+<h2 class="text-right" style = "font-style: italic">Итого: <%= sum %> руб.</h2>
 <div class="col-xs-5"></div>
 <div class="col-xs-2">
   <button class="button"><%= link_to 'Купить', new_customer_path %></button>

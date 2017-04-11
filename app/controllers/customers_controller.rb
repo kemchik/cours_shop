@@ -27,6 +27,7 @@ class CustomersController < ApplicationController
     else
       @customer = Customer.new(customer_params)
       if @customer.save
+        @orders = Order.
         redirect_to root_path
       else
         render :new

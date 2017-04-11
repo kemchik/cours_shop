@@ -1,8 +1,7 @@
-<h1 class="text-center"><%= @category.name %></h1>
-
-
+<h1 class="text-center" style = "font-style: italic"><%= @category.name %></h1>
+<% @sort = true %>
+<%= link_to 'Сортировать от большей цены к меньшей', category_products_path(@category.id, @sort) %>
 <hr style="border-top: 1px solid #000000;">
-
     <% @products.each do |product| %>
         <div class="row">
           <div class='col-xs-4'>
@@ -11,29 +10,29 @@
           </div>
           <div class="col-xs-8">
             <div>
-              <h2 class="text-center"> <%= product.name %> </h2>
+              <h2 class="text-center" style = "font-style: italic";> <%= product.name %> </h2>
             </div>
             <div>
               <h3>Ингридиенты</h3>
-              <p>
+              <p style = "font-style: italic">
                 <%= product.ingredients %>
               <p>
             </div>
             <div>
               <h3>Описание</h3>
-              <p><%= product.description %></p>
+              <p style = "font-style: italic"><%= product.description %></p>
             </div>
             <div class="col-xs-3">
               <h5 class="text-center">Вес</h5>
-              <p class="text-center"><%= product.weight %> кг.</p>
+              <p class="text-center" style = "font-style: italic"><%= product.weight %> кг.</p>
             </div>
             <div class="col-xs-3">
               <h5 class="text-center">Калорийность(в 100 г)</h5>
-              <p class="text-center"><%= product.calories %></p>
+              <p class="text-center" style = "font-style: italic"><%= product.calories %></p>
             </div>
             <div class="col-xs-3">
               <h5 class="text-center">Цена</h5>
-              <p class="text-center"><%= product.price %></p>
+              <p class="text-center" style = "font-style: italic"><%= product.price %></p>
             </div>
             <div class="col-xs-3">
               <%= link_to image_tag('basket.png', class: 'backet'), new_product_order_path(product) %>
@@ -61,7 +60,7 @@
     <% if current_user.admin? %>
       <div class="row">
         <button class="bottom-aligned-row">
-          <%= link_to 'New product', new_category_product_path(@category), method: :put %>
+          <%= link_to 'New product', new_category_product_path %>
         </button>
       </div>
   <% end %>
