@@ -3,6 +3,7 @@
 <hr>
 <% sum = 0.0 %>
 <% sum_one = 0.0  %>
+<% if @order != nil %>
 <% @order.each do |order| %>
 
     <div class="row">
@@ -19,22 +20,17 @@
             <%= order.product.ingredients %>
           <p>
         </div>
-        <div>
-
-        </div>
-
-
         <div class="col-xs-2">
           <h5 class="text-center">Вес</h5>
           <p class="text-center" style = "font-style: italic"><%= order.product.weight %> кг.</p>
         </div>
         <div class="col-xs-3">
           <h5 class="text-center">Калорийность(в 100 г)</h5>
-          <p class="text-center" style = "font-style: italic"><%= order.product.calories %></p>
+          <p class="text-center" style = "font-style: italic"><%= order.product.calories %> ккал.</p>
         </div>
         <div class="col-xs-3">
           <h5 class="text-center">Цена</h5>
-          <p class="text-center" style = "font-style: italic"><%= order.product.price %></p>
+          <p class="text-center" style = "font-style: italic"><%= order.product.price %> руб.</p>
         </div>
         <div class="col-xs-3">
           <h5 class="text-center">Количество</h5>
@@ -46,18 +42,18 @@
           <h4 class="text-center" style = "font-style: italic"><%= sum_one = order.product.price*order.product.amount %> руб.</h4>
         </div>
         <% sum += sum_one %>
-
-        <% if order.persisted? %>
-            <%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: 'Are you sure?'} %>
-        <% end %>
-       
+  <% if user_signed_in? %>
+        <%= link_to 'Delete', order_path(current_session), method: :delete, data: {confirm: 'Are you sure?'} %>-->
+  <%end %>
       </div>
     </div>
     <hr>
 <% end %>
-
+<%end %>
 <h2 class="text-right" style = "font-style: italic">Итого: <%= sum %> руб.</h2>
 <div class="col-xs-5"></div>
+<% if @order != nil %>
 <div class="col-xs-2">
   <button class="button"><%= link_to 'Купить', new_customer_path %></button>
 </div>
+<%end%>

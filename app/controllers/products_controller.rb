@@ -3,8 +3,8 @@ class ProductsController < ApplicationController
 
   def index
     @products = @category.products
-    if params.permit[:sort].present?
-      @products = @category.products.order(:price)
+    if params[:sort].present?
+      @products = @category.products.order(price: :desc)
     end
   end
 

@@ -8,13 +8,14 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <%= image_tag('slide3.png', class: 'd-block img-fluid slide') %>
+      <%= image_tag('keks.jpg', class: 'd-block img-fluid slide') %>
+
     </div>
     <div class="item">
-      <%= image_tag('slide2.png', class: 'd-block img-fluid slide') %>
+      <%= image_tag('blin.jpg', class: 'd-block img-fluid slide') %>
     </div>
     <div class="item">
-      <%= image_tag('slide1.png', class: 'd-block img-fluid slide') %>
+      <%= image_tag('kulich.jpg', class: 'd-block img-fluid slide') %>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -27,33 +28,125 @@
   </a>
 </div>
 
+<br>
+<h1 class="text-center" style = "font-style: italic">Добро пожаловать на EatME!!!</h1>
+<h2 class="text-center" style = "font-style: italic">Здесь вы можете пребрести только свежую выпечку!</h2>
+<h2 class="text-center" style = "font-style: italic">Для нас важно, что бы вы получали только качественную</h2>
+<h2 class="text-center" style = "font-style: italic">и вкусную продукцию.</h2>
+<h2 class="text-center" style = "font-style: italic">Пусть каждый ваш день будет сладок!!!</h2>
+<br>
 
-<div class="row">
-  <div class="col-xs-4 bf_menu ">
-    <br>
-    <h1>Категории</h1>
-    <div class="list-group">
+<div id="fh5co-type" style="background-image: url(<%= asset_path 'piroz.jpg' %>) ;" data-stellar-background-ratio="0.5">
+  <div class="fh5co-overlay"></div>
+  <div class="container">
 
-      <% @category.each do |category| %>
-          <li class="list-group-item"><h3><%= link_to category.name, category_products_path(category) %></h3>
-            <p><%= category.description %></p>
-            <% if user_signed_in? %>
-              <% if current_user.admin? %>
-                <%= link_to 'Update', edit_category_path(category) %>
-                <%= link_to 'Destroy', category_path(category), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <table width="100%">
+        <% @count = 0 %>
+        <tr>
+          <% @category.each do |category| %>
+              <% @count += 1 %>
+              <% if @count%6 != 0 %>
+                  <td width="20%">
+                    <div class="to-animate text-center">
+                      <div class="fh5co-type">
+                        <h3 class="with-icon icon-1"><%= link_to category.name, category_products_path(category) %></h3>
+                        <p><%= category.description %></p>
+                      </div>
+                      <% if user_signed_in? %>
+                          <% if current_user.admin? %>
+                              <%= link_to 'Update', edit_category_path(category) %>
+                              <%= link_to 'Destroy', category_path(category), method: :delete, data: {confirm: 'Are you sure?'} %>
+                          <% end %>
+                      <% end %>
+                    </div>
+                  </td>
+              <% else %>
+                  </tr>
+                  <tr>
+                    <td width="25%">
+                      <div class="to-animate">
+                        <div class="fh5co-type">
+                          <h3 class="with-icon icon-1"><%= link_to category.name, category_products_path(category) %></h3>
+                          <p><%= category.description %></p>
+                        </div>
+                        <% if user_signed_in? %>
+                            <% if current_user.admin? %>
+                                <%= link_to 'Update', edit_category_path(category) %>
+                                <%= link_to 'Destroy', category_path(category), method: :delete, data: {confirm: 'Are you sure?'} %>
+                            <% end %>
+                        <% end %>
+                      </div>
+                    </td>
               <% end %>
-            <% end %>
-          </li>
-      <% end %>
-    </div>
-    <% if user_signed_in? %>
-        <% if current_user.admin? %>
-            <%= link_to 'New category', new_category_url %>
+          <% end %>
+          </tr>
+          </table>
+      <% if user_signed_in? %>
+          <% if current_user.admin? %>
+              <%= link_to 'New category', new_category_url %>
           <% end %>
       <% end %>
-  </div>
+    </div>
 
 </div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <br>
+    <h1 class="text-center" style = "font-style: italic; color: #bb432d">У нас имеется</h1>
+    <hr>
+    <br>
+    <div class="col-xs-4 text-center">
+      <%= image_tag('keks1.png') %>
+      <h3 class="text-center" style="color: #bb432d">ОНЛАЙН ЗАКАЗ</h3>
+    </div>
+    <div class="col-xs-4 text-center">
+      <%= image_tag('keks2.png') %>
+      <h3 class="text-center" style="color: #bb432d">ОТПРАВКА ЗАКАЗА В ТЕЧЕНЕЕ ДНЯ </h3>
+    </div>
+    <div class="col-xs-4 text-center">
+      <%= image_tag('keks3.png') %>
+      <h3 class="text-center" style="color: #bb432d">ВОЗМОЖНОСТЬ САМОВЫЗОВА</h3>
+    </div>
+    <br>
+    <hr>
+  </div>
+</div>
+<hr>
+<br>
+
+<div id="fh5co-events" data-section="events" style="background-image: url(<%= asset_path 'piroz2.jpg' %>);" data-stellar-background-ratio="0.5">
+  <div class="fh5co-overlay"></div>
+  <div class="container">
+    <div class="row text-center fh5co-heading row-padded">
+      <div class="col-md-8 col-md-offset-2 to-animate">
+        <h2 class="heading">Цитаты</h2>
+        <p class="sub-heading">Знать о еде человек должен не меньше, чем о математике или о своём родном языке</p>
+      </div>
+    </div>
+    <div >
+      <div class="col-md-4" style="width: 32.3333333%;">
+        <div class="fh5co-event to-animate-2 text-center">
+          <span class="fh5co-event-meta">КАРЛО ПЕТРИНИ</span>
+          <p>"Готовить нужно не спеша, с чувством, из самых свежих органических продуктов, и есть с теми, кого любишь, за одним большим столом. Бесконечно ускоряя ритм жизни, мы лишаем себя самой жизни"</p>
+        </div>
+      </div>
+      <div class="col-md-4" style="width: 32.3333333%;">
+        <div class="fh5co-event to-animate-2 text-center">
+          <span class="fh5co-event-meta">ОЛЬГА ЛИТВИНЕНКО</span>
+          <p>"Культура питания начинается с высокой самооценки и самоуважения. Если вы действительно хорошо к себе относитесь, уважаете себя, вы не потащите в рот абы что и абы как"</p>
+        </div>
+      </div>
+      <div class="col-md-4" style="width: 32.3333333%;">
+        <div class="fh5co-event to-animate-2 text-center" >
+          <span class="fh5co-event-meta">СЕРГЕЙ ПАРХОМЕНКО</span>
+          <p>"Гастрономическое искусство приучает человека рационально и расчётливо управлять своим временем. Оно воспитывает в нас одновременно и мудрое терпение, и реакцию"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <br>
 <br>

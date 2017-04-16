@@ -1,6 +1,6 @@
 <h1 class="text-center" style = "font-style: italic"><%= @category.name %></h1>
 <% @sort = true %>
-<%= link_to 'Сортировать от большей цены к меньшей', category_products_path(@category.id, @sort) %>
+<%= link_to 'Сортировать от большей цены к меньшей', category_products_path(@category.id, sort: @sort) %>
 <hr style="border-top: 1px solid #000000;">
     <% @products.each do |product| %>
         <div class="row">
@@ -28,11 +28,11 @@
             </div>
             <div class="col-xs-3">
               <h5 class="text-center">Калорийность(в 100 г)</h5>
-              <p class="text-center" style = "font-style: italic"><%= product.calories %></p>
+              <p class="text-center" style = "font-style: italic"><%= product.calories %> ккал.</p>
             </div>
             <div class="col-xs-3">
               <h5 class="text-center">Цена</h5>
-              <p class="text-center" style = "font-style: italic"><%= product.price %></p>
+              <p class="text-center" style = "font-style: italic"><%= product.price %> руб.</p>
             </div>
             <div class="col-xs-3">
               <%= link_to image_tag('basket.png', class: 'backet'), new_product_order_path(product) %>

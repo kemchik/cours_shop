@@ -27,13 +27,18 @@ class CustomersController < ApplicationController
     else
       @customer = Customer.new(customer_params)
       if @customer.save
-        @orders = Order.
+        @order = []
+        session[:orders].each do |order|
+          @order = Order.new(product_id: order['product_id'], amount: order['amount'])
+          @order.save
+        end
+        @orders = Order.all.where(user: nil, status: nil)
+        @orders.update_all(customer_id: @customer.id, status: 'processing')
+        reset_session
         redirect_to root_path
       else
         render :new
       end
-      session[:customers] ||= []
-      session[:customers] << { adress: customer_params[adress], phone: customer_params[:phone], email: customer_params[email]}
     end
   end
 

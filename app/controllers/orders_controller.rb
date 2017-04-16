@@ -5,12 +5,13 @@ class OrdersController < ApplicationController
       if user_signed_in?
         @order = Order.where(user_id: current_user, status: nil)
       else
-
-        @order = []
-        session[:orders].each do |order|
-        @order << Order.new(product_id: order['product_id'], amount: order['amount'])
-
-      end
+        if session[:orders].blank?
+          @order
+        else
+          @order = []
+          session[:orders].each do |order|
+            @order << Order.new( product_id: order['product_id'], amount: order['amount']) end
+          end
       end
     end
 
@@ -29,14 +30,18 @@ class OrdersController < ApplicationController
         end
       else
         session[:orders] ||= []
-        session[:orders] << { product_id: @product.id, amount: order_params[:amount] }
+        session[:orders] << {product_id: @product.id, amount: order_params[:amount] }
         redirect_to root_path
       end
     end
 
     def destroy
-      @order = Order.find(params[:id])
-      @order.destroy
+      if user_signed_in?
+        @order = Order.find(params[:id])
+        @order.destroy
+      else
+        session.delete(params[:id])
+      end
       redirect_to orders_path
     end
 
