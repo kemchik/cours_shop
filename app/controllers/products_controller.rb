@@ -6,6 +6,9 @@ class ProductsController < ApplicationController
     if params[:sort].present?
       @products = @category.products.order(price: :desc)
     end
+    if params[:sort_d].present?
+      @products = @category.products.order(price: :asc)
+    end
   end
 
   def show

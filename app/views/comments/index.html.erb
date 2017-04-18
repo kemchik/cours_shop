@@ -1,0 +1,86 @@
+<div style="min-height: 50em">
+  <div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-8 buy2">
+      <li><h3 ><%= link_to 'Назад' , category_products_path(@product.category_id) %></h3></li>
+    </div>
+  </div>
+
+      <div class="row">
+        <div class='col-xs-4'>
+          <br>
+          <%= image_tag(@product.image_url, class: 'image_prod') if @product.image? %>
+        </div>
+        <div class="col-xs-8">
+          <div>
+            <h2 class="text-center" style = "font-style: italic";> <%= @product.name %> </h2>
+          </div>
+          <div>
+            <h3>Ингредиенты</h3>
+            <p style = "font-style: italic">
+              <%= @product.ingredients %>
+            <p>
+          </div>
+          <div>
+            <h3>Описание</h3>
+            <p style = "font-style: italic"><%= @product.description %></p>
+          </div>
+          <div class="col-xs-3">
+            <h5 class="text-center">Вес</h5>
+            <p class="text-center" style = "font-style: italic"><%= @product.weight %> кг.</p>
+          </div>
+          <div class="col-xs-3">
+            <h5 class="text-center">Калорийность(в 100 г)</h5>
+            <p class="text-center" style = "font-style: italic"><%= @product.calories %> ккал.</p>
+          </div>
+          <div class="col-xs-3">
+            <h5 class="text-center">Цена</h5>
+            <p class="text-center" style = "font-style: italic"><%= @product.price %> руб.</p>
+          </div>
+          <div class="col-xs-3">
+            <%= link_to image_tag('basket.png', class: 'backet'), new_product_order_path(@product.id) %>
+          </div>
+        </div>
+
+      </div>
+      <br>
+  <div class="container">
+    <% @one.each do |comment| %>
+        <div class="col-xs-11" style="background-color: #eeeeee">
+          <hr>
+          <div class="col-xs-2" style="background-color: #eeeeee">
+            <h4 style="color: crimson">
+        <%= comment.name %>
+            </h4>
+            </div>
+          <div class="col-xs-10" style="background-color: #eeeeee">
+          <h5><%= comment.created_at.asctime%> </h5>
+          </div>
+
+        <div class="col-xs-12" style="background-color: #eeeeee">
+        <%= comment.comment %>
+          <hr>
+        </div>
+        </div>
+
+    <% end %>
+  </div>
+  <div class="col-xs-4"></div>
+  <div class="col-xs-5">
+    <h3>Введите ваш отзыв:</h3>
+  <%= simple_form_for [ @product, @comments], :url => product_comments_path, :method => :post do |f| %>
+
+      <p>
+        <%= f.input :name, as: :string, :label=>'Имя' %>
+      </p>
+
+      <p>
+        <%= f.input :comment, as: :text, :label=>'Отзыв'  %>
+      </p>
+
+      <p class="text-center">
+        <%= f.submit 'Save' %>
+      </p>
+  <% end %>
+  </div>
+</div>

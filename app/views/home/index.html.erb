@@ -39,7 +39,7 @@
 <div id="fh5co-type" style="background-image: url(<%= asset_path 'piroz.jpg' %>) ;" data-stellar-background-ratio="0.5">
   <div class="fh5co-overlay"></div>
   <div class="container">
-
+<h1 class="text-center" style="color:  #fff3b1; font-style: italic">Категории</h1>
       <table width="100%">
         <% @count = 0 %>
         <tr>
@@ -81,11 +81,15 @@
           <% end %>
           </tr>
           </table>
+    <div class="text-center">
       <% if user_signed_in? %>
           <% if current_user.admin? %>
+              <br>
+              <br>
               <%= link_to 'New category', new_category_url %>
           <% end %>
       <% end %>
+    </div>
     </div>
 
 </div>

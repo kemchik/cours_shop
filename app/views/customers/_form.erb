@@ -1,21 +1,33 @@
-<div class='row'>
-  <div class='col-lg-4'>
+<div id="fh5co-type" style="background-image: url(<%= asset_path 'pech.jpg' %>) ; " data-stellar-background-ratio="0.5">
+  <div class="fh5co-overlay"></div>
+  <div class="container" >
+<div class='row' style="min-height: 40em">
+  <div class="col-xs-3"></div>
+  <div class='col-xs-5'>
+
+    <br>
+    <h2 class="text-center" style="color: #eeeeee;">Введите данные для отправки заказа</h2>
+    <br>
+    <br>
+
     <%= simple_form_for @customer, :url => customers_path, :method => :post  do |f| %>
         <p>
-          <%= f.input :address %>
+          <%= f.input :address, input_html: { class: 'input' },  label_html: { class: 'label' } %>
         </p>
 
         <p>
-          <%= f.input :phone %>
+          <%= f.input :phone, input_html: { class: 'input' },  label_html: { class: 'label' } %>
         </p>
 
         <p>
-          <%= f.input :email %>
+          <%= f.input :email,placeholder: 'user@domain.com' ,input_html: { class: 'input' },  label_html: { class: 'label' } %>
         </p>
 
-        <p>
-          <%= f.submit%>
+        <p class="text-center" style="color: #0c1a1e">
+          <%= f.submit 'Отправить', data: {confirm: 'Ваш заказ принят'}%>
         </p>
     <% end %>
   </div>
+</div>
+</div>
 </div>

@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
       else
         session[:orders] ||= []
         session[:orders] << {product_id: @product.id, amount: order_params[:amount] }
-        redirect_to root_path
+        redirect_to category_products_path(@product.category_id)
       end
     end
 

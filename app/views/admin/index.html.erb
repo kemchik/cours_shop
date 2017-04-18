@@ -1,9 +1,11 @@
-<table>
+<div style="min-height: 40em">
+<table style="border-color: #0c1a1e; width: 100%">
 <tr>
   <td><h2 class="text-center">Дата заказа</h2></td>
   <td><h2 class="text-center">Адрес</h2></td>
   <td><h2 class="text-center">Телефон</h2></td>
   <td><h2 class="text-center">Email</h2></td>
+  <td><h2 class="text-center">  </h2></td>
 </tr>
 <% @customer.each do |customer| %>
 
@@ -21,9 +23,10 @@
         <h4 class="text-center" > <%= customer.email %></h4>
       </td>
       <td width="20%">
-        <button class="align-center"><%= link_to 'Список товаров', admin_product_path(customer) %></button>
+        <button class="align-center buy"><%= link_to 'Список товаров', admin_product_path(customer) %></button>
       </td>
 
       </tr>
 <% end %>
 </table>
+</div>

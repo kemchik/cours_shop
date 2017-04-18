@@ -1,15 +1,22 @@
-<div class='row'>
-  <div class='col-lg-4'>
-     <p>В наличие: <%= @product.amount %> товара</p>
+<div class='row' style="min-height: 40em">
+  <div class="col-xs-3"></div>
+  <div class='col-xs-6 text-center'>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+     <h3>Вы можете заказать товар в количестве: <%= @product.amount %> </h3>
 
     <%= simple_form_for @order, url: product_orders_path(@product) do |f| %>
 
         <p>
-          <%= f.input :amount, collection: 1..@product.amount, prompt: 'Введите количество товара', selected: 1%>
+          <%= f.input :amount, collection: 1..@product.amount, hint: 'Введите желаемое количество товара',selected: 1, input_html: { class: 'input2' }%>
         </p>
 
         <p>
-          <%= f.submit %>
+          <%= f.submit 'Save', data: {confirm: 'Товар добавлен в корзину'} %>
         </p>
     <% end %>
   </div>

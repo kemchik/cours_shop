@@ -1,6 +1,25 @@
+<div style="min-height: 50em">
 <h1 class="text-center" style = "font-style: italic"><%= @category.name %></h1>
+<% @sort_d = true %>
 <% @sort = true %>
-<%= link_to 'Сортировать от большей цены к меньшей', category_products_path(@category.id, sort: @sort) %>
+<div class="row">
+  <div class="col-xs-1"></div>
+  <div class="col-xs-8 buy2">
+    <li><h3 ><%= link_to 'Назад' , root_path %></h3></li>
+  </div>
+  <div class="col-xs-3 sortirovka">
+    <li class="dropdown" >
+      <a id="drop1" href="#" class="dropdown-toggle " data-toggle="dropdown">
+        <h3 style="color: #B00100">Сортировать</h3>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="#"><%= link_to 'от большей цены к меньшей', category_products_path(@category.id, sort: @sort) %></a></li>
+        <li><a href="#"><%= link_to 'от меньшей цены к большей', category_products_path(@category.id, sort_d: @sort_d) %></a></li>
+        <li class="divider"></li>
+      </ul>
+    </li>
+  </div>
+</div>
 <hr style="border-top: 1px solid #000000;">
     <% @products.each do |product| %>
         <div class="row">
@@ -13,7 +32,7 @@
               <h2 class="text-center" style = "font-style: italic";> <%= product.name %> </h2>
             </div>
             <div>
-              <h3>Ингридиенты</h3>
+              <h3>Ингредиенты</h3>
               <p style = "font-style: italic">
                 <%= product.ingredients %>
               <p>
@@ -37,14 +56,18 @@
             <div class="col-xs-3">
               <%= link_to image_tag('basket.png', class: 'backet'), new_product_order_path(product) %>
             </div>
+            <div class="buy">
+              <%= link_to 'Просмотреть', product_comments_path(product) %>
+            </div>
           </div>
           <% if user_signed_in? %>
               <% if current_user.admin? %>
-                    <div>
-                      <button class="button7 ">
+                  <div class="col-xs-1"></div>
+                    <div class="col-xs-4">
+                      <button class="button7 buy">
                         <%= link_to 'Update', edit_category_product_path(@category, product) %>
                       </button>
-                      <button class='button7'>
+                      <button class='button7 buy'>
                         <%= link_to 'Destroy', category_product_path(@category, product), method: :delete, data: {confirm: 'Are you sure?'} %>
                       </button>
                     <br>
@@ -59,9 +82,15 @@
 <% if user_signed_in? %>
     <% if current_user.admin? %>
       <div class="row">
-        <button class="bottom-aligned-row">
+        <div class="col-xs-1"></div>
+        <div class=class="col-xs-4">
+        <button class="bottom-aligned buy">
           <%= link_to 'New product', new_category_product_path %>
         </button>
+          <br>
+          <br>
+        </div>
       </div>
   <% end %>
 <% end %>
+</div>

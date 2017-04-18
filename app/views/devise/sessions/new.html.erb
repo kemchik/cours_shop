@@ -1,10 +1,16 @@
-<h2>Log in</h2>
+<div id="fh5co-type" style="background-image: url(<%= asset_path 'pech.jpg' %>) ; " data-stellar-background-ratio="0.5">
+  <div class="fh5co-overlay"></div>
+  <div class="container" >
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
+<h2 style="color: #ffffff">Авторизация</h2>
+      <br>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= f.input :email , required: false, autofocus: true, input_html: { class: 'input' }, label_html: { class: 'label' }  %>
+    <%= f.input :password, required: false, input_html: { class: 'input' },  label_html: { class: 'label' } %>
+    <%= f.input :remember_me, as: :boolean, label_html: {class: 'label'} %>
   </div>
 
   <div class="form-actions">
@@ -13,3 +19,7 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+    </div>
+    <div class="col-xs-4"></div>
+  </div>
+</div>

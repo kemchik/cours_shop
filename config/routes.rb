@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   end
 
   resources :products do
+    resources :comments
+  end
+
+  resources :products do
     resources :orders
   end
 
