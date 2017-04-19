@@ -8,7 +8,7 @@ end
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'carrierwave', '~> 1.0'
-
+gem 'validates_email_format_of'
 
 
 gem 'simple_form'

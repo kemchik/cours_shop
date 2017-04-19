@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
         @order.destroy
       else
-        session.delete(params[:id])
+        session[:orders].reject!{|order| order[:product_id] == params[:product_id]}
       end
       redirect_to orders_path
     end

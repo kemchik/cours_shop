@@ -1,4 +1,4 @@
-<div style="min-height: 50em">
+<div style="min-height: 40em">
 <h1 class="text-center">Корзина</h1>
 <br>
 <hr>
@@ -42,11 +42,17 @@
           <h4 class="text-center">Итоговая сумма:</h4>
           <h4 class="text-center" style = "font-style: italic"><%= sum_one = order.product.price*order.product.amount %> руб.</h4>
         </div>
-        <div class="col-xs-6"></div>
+        <div class="col-xs-6 buy text-center buy7">
+          <br>
+          <br>
+          <%= link_to 'Просмотреть', product_comments_path(order.product.id) %>
+        </div>
         <div class="col-xs-3 buy2">
           <br>
           <% if user_signed_in? %>
               <%= link_to 'Удалить', order_path(order), method: :delete, data: {confirm: 'Are you sure?'} %>
+              <% else %>
+          <%= link_to 'Удалить', order_path(order.product.id), method: :delete, data: {confirm: 'Are you sure?'} %>
           <%end %>
         </div>
         <% sum += sum_one %>
@@ -63,4 +69,5 @@
 </div>
 <br><br>
 <%end%>
+</div>
 </div>

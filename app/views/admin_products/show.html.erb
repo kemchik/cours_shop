@@ -38,5 +38,5 @@
 
 <h2 class="text-center"><%= @status_message %></h2>
 <% if @status_message == 'Заказ в ожидании' %>
-<button><%= link_to 'Заказ отправлен', admin_product_path(@customer), method: :put %></button>
+<button class="buy"><%= link_to 'Заказ отправлен', admin_product_path(@customer), method: :put %></button>
 <% end %>

@@ -16,15 +16,15 @@
         </p>
 
         <p>
-          <%= f.input :phone, input_html: { class: 'input' },  label_html: { class: 'label' } %>
+          <%= f.input :phone,  input_html: { class: 'input' },  label_html: { class: 'label' } %>
         </p>
 
         <p>
-          <%= f.input :email,placeholder: 'user@domain.com' ,input_html: { class: 'input' },  label_html: { class: 'label' } %>
+          <%= f.input :email, placeholder: 'user@domain.com' ,input_html: { class: 'input' },  label_html: { class: 'label' } %>
         </p>
 
         <p class="text-center" style="color: #0c1a1e">
-          <%= f.submit 'Отправить', data: {confirm: 'Ваш заказ принят'}%>
+          <%= f.submit 'Отправить'%>
         </p>
     <% end %>
   </div>
