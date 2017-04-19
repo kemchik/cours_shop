@@ -50,7 +50,7 @@ test:
 #
 production:
   <<: *default
-  adapter: pg
+  adapter: postgresql
   database: cours_shop_production
   username: cours_shop
   password: <%= ENV['COURS_SHOP_DATABASE_PASSWORD'] %>
