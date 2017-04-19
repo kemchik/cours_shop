@@ -9,7 +9,7 @@
     <br>
      <h3>Вы можете заказать товар в количестве: <%= @product.amount %> </h3>
 
-    <%= simple_form_for @order, url: product_orders_path(@product) do |f| %>
+    <%= simple_form_for @order, url: product_orders_path(@product, @order) do |f| %>
 
         <p>
           <%= f.input :amount, collection: 1..@product.amount, hint: 'Введите желаемое количество товара',selected: 1, input_html: { class: 'input2' }%>
