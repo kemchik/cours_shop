@@ -53,4 +53,4 @@ production:
   adapter: postgresql
   database: cours_shop_production
   username: cours_shop
-  password: <%= ENV['COURS_SHOP_DATABASE_PASSWORD'] %>
+  password: '1996'  #<%= ENV['COURS_SHOP_DATABASE_PASSWORD'] %>
