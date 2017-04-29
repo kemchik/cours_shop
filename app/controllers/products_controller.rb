@@ -48,6 +48,11 @@ class ProductsController < ApplicationController
     redirect_to category_products_path(@category)
   end
 
+  def import
+    Product.import(params[:file], @category_id)
+    redirect_to root_path, notice: 'Products imported.'
+  end
+
   private
 
   def load_category

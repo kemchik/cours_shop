@@ -6,9 +6,11 @@ git_source(:github) do |repo_name|
 end
 
 gem 'devise'
+gem 'roo'
 gem 'bootstrap-sass'
 gem 'carrierwave', '~> 1.0'
 gem 'validates_email_format_of'
+gem 'roo-xls'
 
 
 gem 'simple_form'
