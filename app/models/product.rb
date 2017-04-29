@@ -9,5 +9,14 @@ class Product < ApplicationRecord
   validates :calories, :numericality => {:greater_than => 0}
   validates :name, uniqueness: { scope: :category_id }
   mount_uploader :image, ImageUploader
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      #csv << :name
+      all.each do |product|
+        csv << product.attributes.values_at(:name, :description, :price, :amount, :weight, :calories)
+      end
+    end
+  end
 end
 

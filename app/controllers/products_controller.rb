@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = @category.products
+    @category_id
     if params[:sort].present?
       @products = @category.products.order(price: :desc)
     end
@@ -51,6 +52,7 @@ class ProductsController < ApplicationController
 
   def load_category
     @category = Category.find(params[:category_id])
+    @category_id = @category.id
   end
 
   def product_params

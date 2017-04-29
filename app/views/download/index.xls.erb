@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">id</Data></Cell>
+        <Cell><Data ss:Type="String">name</Data></Cell>
+        <Cell><Data ss:Type="String">description</Data></Cell>
+        <Cell><Data ss:Type="String">price</Data></Cell>
+        <Cell><Data ss:Type="String">amount</Data></Cell>
+        <Cell><Data ss:Type="String">weight</Data></Cell>
+        <Cell><Data ss:Type="String">calories</Data></Cell>
+      </Row>
+      <% @products.each do |product| %>
+          <Row>
+            <Cell><Data ss:Type="Number"><%= product.id %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= product.name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= product.description %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= product.price %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= product.amount %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= product.weight %></Data></Cell>
+            <Cell><Data ss:Type="Number"><%= product.calories %></Data></Cell>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

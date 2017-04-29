@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   resources :office
 
+  resources :download
   # get 'admin_products/update'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
